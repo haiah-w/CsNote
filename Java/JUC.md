@@ -1,6 +1,6 @@
 # # 线程状态
 
-<img src="image/duoxian.png" alt="duoxian" style="zoom: 67%;" />
+<img title="" src="../.images/duoxian.png" alt="duoxian" style="zoom: 67%;" width="801">
 
 其中状态：
 
