@@ -35,5 +35,3 @@
 典型不可用贪心的题目：[leetcode-53-最大子序和(连续)](https://leetcode.cn/problems/maximum-subarray/)
 
 可以使用贪心的题目：[leetcode-300-最长递增子序列(不连续)](https://leetcode.cn/problems/longest-increasing-subsequence/)
-
-
