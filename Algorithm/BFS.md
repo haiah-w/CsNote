@@ -18,6 +18,8 @@ BFS通常对树、图进行层序遍历；
 
 遍历当前层节点，并使用<mark>队列</mark>存放下一层的所有节点；直到遍历所有节点；
 
+[图文详解](https://leetcode.cn/circle/article/YLb5l4/)
+
 ## BFS分类
 
 根据源点(起始点)可以分为：单源BFS、多源BFS
