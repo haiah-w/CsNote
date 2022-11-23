@@ -18,9 +18,13 @@
 
 穷举所有子问题的最优解（局部最优解），并且其中有一个是全局最优解；
 
-- 后一个子问题的解，不一定基于上一个子问题的最优解；
+可以分为以下几种情况：
 
-- 因此需要记录所有的局部最优解；
+1、后一个子问题的解仅依赖于上一个解；（可考虑贪心）
+
+2、后一个子问题的解依赖于前面多个解；（需要记录所有问题的解）
+
+3、后一个子问题，根据特殊规则，选择前面的解；
 
 # 贪心策略
 
@@ -32,6 +36,32 @@
 
 - 每一步，都只需要求得当前的局部最优解；
 
-典型不可用贪心的题目：[leetcode-53-最大子序和(连续)](https://leetcode.cn/problems/maximum-subarray/)
+典型不可用贪心的题目：
+
+- [53-最大子序和(连续)](https://leetcode.cn/problems/maximum-subarray/)
+
+- [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/?envType=study-plan&id=suan-fa-ru-men&plan=algorithms&plan_progress=19mrtk1)：标准具备后效性的情况，后续的选择对前面有影响；
 
 可以使用贪心的题目：[leetcode-300-最长递增子序列(不连续)](https://leetcode.cn/problems/longest-increasing-subsequence/)
+
+
+
+# 198.打家劫舍
+
+输入：[2,7,9,7,1,2,19]
+
+不可选取相邻的两家，如何获取最大收益？
+
+最佳收益是：7，7，19
+
+7-19跳过了两家，因此后续的结果，依赖于前面不止一个的局部最优解；
+
+必须使用数组，记录前面所有的结果；因此：
+
+$$
+g(x) = max\{f(x-2), f(x-3)\} + f(x)
+$$
+
+每次的计算后，记录全局最大值；
+
+![](../.images/2022-11-23-22-02-07-image.png)
