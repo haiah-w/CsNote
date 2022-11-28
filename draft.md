@@ -19,3 +19,7 @@ https://zhuanlan.zhihu.com/p/131299779
 
 五、websockets
 HTML5支持的一种新协议：基于TCP，支持服务端推送消息、支持长连接；
+
+设计模式：
+发布订阅（观察者模式）
+责任链
