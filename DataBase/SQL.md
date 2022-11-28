@@ -197,4 +197,12 @@ select * from A where exists (select 1 from B where A.id=B.id);
 
 ## where/having
 
-作用时机：where在结果返回之前过滤，having是返回结果集后再次过滤；
+作用时机：
+
+- where在结果返回之前过滤，且在数据分组前进行where过滤，在group by之前执行where
+
+- having是返回结果集后再次过滤，在group by 之后执行；
+
+``where`后面不能使用聚合函数(`group by`)做过滤，此时用`having`
+
+- [leetcode 1084. 销售分析III](https://leetcode.cn/problems/sales-analysis-iii/description/?envType=study-plan&id=sql-beginner&plan=sql&plan_progress=12pggev)
