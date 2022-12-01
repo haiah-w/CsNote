@@ -1,0 +1,3 @@
+https://zhuanlan.zhihu.com/p/114244039
+
+BeanDefinition接口顶级基础接口,用来描述Bean,里面存放Bean元数据，比如Bean类名、scope、属性、构造函数参数列表、依赖的bean、是否是单例类、是否是懒加载等一些列信息。
