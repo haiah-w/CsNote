@@ -32,12 +32,6 @@ having后只能跟聚合函数
 
 - [1193. 每月交易 I](https://leetcode.cn/problems/monthly-transactions-i/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
 
-8、count(condition)，只要condition结果非null
-
-因此，使用count计算条件，必须保证false的时候，返回null
-
-- [1193. 每月交易 I](https://leetcode.cn/problems/monthly-transactions-i/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
-
 # 类别
 
 1、分类统计表中重复记录、某列和：`group by`、`having`、`count`、`sum`
@@ -57,3 +51,15 @@ having后只能跟聚合函数
 - [1173. 即时食物配送 I](https://leetcode.cn/problems/immediate-food-delivery-i/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
 
 - [1633. 各赛事的用户注册率](https://leetcode.cn/problems/percentage-of-users-attended-a-contest/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
+
+# 子查询相关题目
+
+子查询：即返回一张临时表，在子查询返回的临时表上再进行查询；
+
+[1303. 求团队人数 - 力扣（Leetcode）](https://leetcode.cn/problems/find-the-team-size/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
+
+[1264. 页面推荐 - 力扣（Leetcode）](https://leetcode.cn/problems/page-recommendations/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
+
+自连接：
+
+[570. 至少有5名直接下属的经理 - 力扣（Leetcode）](https://leetcode.cn/problems/managers-with-at-least-5-direct-reports/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
