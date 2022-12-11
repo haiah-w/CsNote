@@ -24,15 +24,24 @@
 ifnull(count(departmentId ),0)
 ```
 
+3、count(express)
+
+不能用：count(if(score>90,1,0))，0也会计数，只有null不计数；
+
+所以用：
+
+- count(if(score>90,1,null))
+
+- count(score>90 OR null)
+
 # group by
 
-1、分组并取另一列的极值问题：按学号分组，多科目中取最大成绩；
+1、group by 配和聚合函数 max、min
 
-使用：max()函数
+**分组并取另一列的极值问题**：
 
 - [1164. 指定日期的产品价格](https://leetcode.cn/problems/product-price-at-a-given-date/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
-
-
+- [1988. 找出每所学校的最低分数要求](https://leetcode.cn/problems/find-cutoff-score-for-each-school/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
 
 # union/union all
 
@@ -45,8 +54,6 @@ union all：叠加后，不去重；
 用处：可以将多列数据，合并到一列；union不考虑列之间的关系，直接叠加；
 
 - [1783. 大满贯数量](https://leetcode.cn/problems/grand-slam-titles/description/?envType=study-plan&id=sql-basic&plan=sql&plan_progress=1g3dies)
-
-
 
 # 笛卡尔积
 

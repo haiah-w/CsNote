@@ -36,15 +36,13 @@
 
 - 每一步，都只需要求得当前的局部最优解；
 
-典型不可用贪心的题目：
+典型<mark>不可用</mark>贪心的题目：
 
 - [53-最大子序和(连续)](https://leetcode.cn/problems/maximum-subarray/)
 
 - [198. 打家劫舍](https://leetcode.cn/problems/house-robber/description/?envType=study-plan&id=suan-fa-ru-men&plan=algorithms&plan_progress=19mrtk1)：标准具备后效性的情况，后续的选择对前面有影响；
 
 可以使用贪心的题目：[leetcode-300-最长递增子序列(不连续)](https://leetcode.cn/problems/longest-increasing-subsequence/)
-
-
 
 # 198.打家劫舍
 
@@ -63,5 +61,3 @@ g(x) = max\{f(x-2), f(x-3)\} + f(x)
 $$
 
 每次的计算后，记录全局最大值；
-
-![](../.images/2022-11-23-22-02-07-image.png)

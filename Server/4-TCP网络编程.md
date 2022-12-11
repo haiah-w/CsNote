@@ -1,10 +1,4 @@
-# Socket
-
-要进行网络通信，就需要建立网络连接，网络连接需要建立在约定的通信协议之上，如：TCP协议、UDP协议；为了能够更方便的通信，对协议进行抽象，定制接口，就形成了socket规范，封装成Socket接口，供上层开发者调用。
-
-Socket：是传输层的协议，对上层（应用层）暴露的抽象接口；
-
-# Socket生命周期
+Socket生命周期
 
 ```shell
 # 查看linux socket文档
@@ -59,19 +53,19 @@ int listen(int sockfd, int backlog);
 
 - sockfd：监听的socket文件描述符
 
-- backlog：<mark>连接队列</mark>的最大长度；当连接队列满时，有客户端尝试建立连接，则返回ECONNREFUSED，拒绝连接；
+- backlog：连接队列的最大长度；当连接队列满时，有客户端尝试建立连接，则返回ECONNREFUSED，拒绝连接；
 
 ---
 
 此时服务端才算处于监听listen状态，客户端才可与服务端尝试建立连接；
 
-（1）当有客户端尝试建立连接，server则创建一个socket加入<mark>半连接队列</mark>；
+（1）当有客户端尝试建立连接，server则创建一个socket加入半连接队列；
 
-（2）当<mark>完成三次握手</mark>，server则会取出半连接队列的socket，加入<mark>全连接队列</mark>；
+（2）当完成三次握手，server则会取出半连接队列的socket，加入全连接队列；
 
 之后，应用程序，则可通过accept取出全连接队列中就绪的socket；
 
-----
+---
 
 4、socket.accept()：阻塞等待就绪的socket，返回新创建的socket，专门用于特定连接的读写；
 
@@ -79,9 +73,9 @@ int listen(int sockfd, int backlog);
  int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 ```
 
-![](../.images/socket.png)
-
 TODO：
+
+![](../.images/socket.png)
 
 5、断开连接
 
