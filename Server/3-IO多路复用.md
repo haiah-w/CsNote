@@ -196,7 +196,7 @@ epoll中则是：
 
 select：
 
-- 监听的socket fd数量受限；默认1024，可修改但
+- 监听的socket fd数量受限；默认1024；
 
 - fd_set集合需要不断在用户和内核间复制；调用select和返回，<mark>复制两次</mark>；
 

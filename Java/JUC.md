@@ -1,4 +1,4 @@
-# # 线程状态
+# 线程状态
 
 <img title="" src="../.images/duoxian.png" alt="duoxian" style="zoom: 67%;" width="801">
 

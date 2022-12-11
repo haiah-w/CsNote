@@ -1,12 +1,12 @@
 # NIO
 
-Java-No-blocking IO
-
 同步非阻塞IO
 
 三大核心：
 
 Selector，Channel，Buffer
+
+IO多路复用：基于epoll实现
 
 - **面向缓冲**，**面向块**的IO模型；
 - socket线程从通道中进行**请求**或者**获取数据**；
