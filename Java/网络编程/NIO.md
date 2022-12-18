@@ -160,3 +160,7 @@ public final SelectionKey register(Selector sel, int ops)
 
 - NIO数据总是从通道读取到缓冲区，从缓冲区写入到通道；
 - Selector监听多个通道的事件（事件驱动模型）；
+
+# NIO缺陷
+
+1、比较复杂原生，使用不方便；

@@ -1,6 +1,7 @@
 https://www.jianshu.com/p/2b2d1f511959
 
 # TLS/SSL
+
 HTTPS = HTTP + TLS/SSL(应用层协议)
 
 SSL：Secure Socket Layer，安全套接字层,已经更名为TLS;
@@ -16,7 +17,6 @@ TLS 1.3(性能更好,更安全)
 TLS建立在传输层、应用层之间,为应用层提供数据封装、压缩、加解密等功能；
 
 # HTTPS握手过程
-
 
 1、客户端告知服务端，自己支持的TLS版本、加密套件、和第1个随机数
 2、服务端确认支持的TLS版本、选择的加密套件、并生成第2个随机数，返回给客户端
@@ -38,53 +38,52 @@ TLS建立在传输层、应用层之间,为应用层提供数据封装、压缩�
 
 # 单向认证
 
-
-
 # 双向认证
-
-
 
 # JKS/PKCS12
 
-
-
 # 私钥格式
+
 Pem格式文件是存储、传输密码学的密钥、公开密钥证书和其他数据的文件格式的业界标准
 格式标准：
+
 ```
 -----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQ.....
 -----END RSA PRIVATE KEY-----
 ```
 
-
 # openssl
+
 openssl：开源的安全套接字层密码库，包含常用的密码算法，提供密钥生成、证书封装、验证等功能
 
-
 1、生成私钥，pem格式文件(存储、传输密码学的密钥、公开密钥证书和其他数据的文件格式的业界标准)
+
 ```shell
 openssl genrsa -out root.key 2048
 ```
 
 可以从私钥中创建一个公钥：
+
 ```shell
 openssl rsa -pubout -in root.key
 ```
 
 2、用私钥生成请求文件(.csr)，用于
+
 ```shell
 openssl req -new -out root-req.csr -key root.key -keyform PEM
 ```
 
 3、自签名
+
 ```shell
 openssl x509 -req -in root-req.csr -out root-cert.cer -signkey root.key -CAcreateserial -days 365
 ```
+
 - x509：公钥证书的格式标准
 - signkey：指定签名使用的私钥
 - in：
 - out：
 - days：
 - CAcreateserial：创建证书序列号
-
