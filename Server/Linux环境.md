@@ -62,3 +62,9 @@ sudo fc-cache -fv
 # 虚拟机安装
 
 镜像文件：[aliyun-ubuntu-releases-20.04](https://mirrors.aliyun.com/ubuntu-releases/20.04/)
+
+## windowsTerminal登录
+
+```shell
+Install-Module PSReadLine -AllowPrerelease -Force
+```
