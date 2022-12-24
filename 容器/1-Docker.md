@@ -2,6 +2,27 @@
 - container
 - repository
 
+# Docker配置
+
+配置文件：/etc/docker/daemon.json
+
+```shell
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "registry-mirrors":["https://xmgeb39x.mirror.aliyuncs.com"]
+}
+```
+
+# 启停Docker
+
+```shell
+sudo systemctl daemon-reload && sudo systemctl restart docker
+```
+
+[Ubuntu下搭建Kubernetes集群(3)--k8s部署 - 走看看 (zoukankan.com)](http://t.zoukankan.com/xl2432-p-10933022.html)
+
+
+
 # 镜像命令
 
 - search：查询镜像，如果需要tag，只能去官网查：[https://hub.docker.com/](https://hub.docker.com/)
@@ -23,7 +44,9 @@
   ```
 
 - build：从Dockerfile创建
+
 - push
+
 - rm：删除镜像
   
   ```shell
@@ -33,6 +56,7 @@
 # 容器命令
 
 - create：创建
+
 - start：启动已存在容器
   
   ```shell
