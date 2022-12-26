@@ -2,6 +2,57 @@
 
 三台ubuntu：master、slave0、slave1
 
+# 更换源
+
+```shell
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# 预发布软件源
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+```
+
+```shell
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] http://mirrors.aliyun.com/docker-ce/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+更新并添加公钥：
+
+```shell
+apt-get update
+--------------
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv [pub-key]
+```
+
+# 配置root
+
+```shell
+sudo passwd root    # 设置root密码
+sudo vim /etc/ssh/sshd_config    # 允许root登录
+----------------------------
+PermitRootLogin yes
+----------------------------
+sudo systemctl restart sshd     # 重启sshd
+```
+
+# 关闭swap
+
+```shell
+sudo swapoff -a
+# 查看 swap为0 即可
+free
+```
+
 ## 修改主机名：
 
 ```shell
@@ -22,7 +73,7 @@ sudo vi /etc/hosts
 # 时间同步
 
 ```shell
-sudo apt-get install ntpdate
+timedatectl set-timezone Asia/Shanghai
 ```
 
 # 主机间免密
@@ -40,100 +91,6 @@ ssh-keygen-t rsa
 ```
 
 3、添加公钥到其他节点的`~.ssh/authorized_keys`
-
-# Docker/Kubernetes
-
-前置依赖：
-
-```shell
-sudo apt-get update
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release \
-    apt-transport-https
-```
-
-国内源：/etc/apt/sources.list
-
-```shell
-deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
-deb http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main
-```
-
-## Docker Engine
-
-[Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
-
-```shell
-sudo apt-get remove docker docker-engine docker.io containerd runc
-```
-
-安装
-
-```shell
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-## Kubectl/kubeadm/kubelet
-
-[在 Linux 系统中安装并设置 kubectl](https://kubernetes.io/zh-cn/docs/tasks/tools/install-kubectl-linux/)
-
-update并安装：
-
-```shell
-sudo apt-get update
-sudo apt-get install -y kubectl kubeadm kubelet
-```
-
-# 配置
-
-## docker镜像加速
-
-配置docker镜像加速(阿里云加速)，没有则新建：
-
-/etc/docker/daemon.json
-
-```json
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "registry-mirrors":["https://xmgeb39x.mirror.aliyuncs.com"]
-}
-```
-
-## 服务启动
-
-```shell
-sudo service --status-all # 查看所有服务
-sudo service docker start # 启动服务
-sudo service docker restart # 重启服务
-```
-
-## 非root操作docker
-
-1、赋予用户root权限
-
-2、添加用户到docker组
-
-docker安装时默认创建docker组
-
-```shell
-# 查看docker组
-sudo cat /etc/group  |grep docker 
-
-# 查看docker.sock所在组
-ll /var/run/docker.sock 
-
-# 添加will用户到docker组
-sudo gpasswd -a will docker  
-
-# 刷新用户组
-newgrp docker
-
-# 查看当前用户所在群组
-id
-```
 
 # Troubleshooting
 
