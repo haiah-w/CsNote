@@ -267,7 +267,7 @@ public interface Lock {
 
 这是一个简化的线程队列模型：
 
-<img src="image/aqs.png" style="zoom:67%;" />
+<img title="" src="../.images/aqs.png" alt="" style="zoom:67%;">
 
 重要属性：
 

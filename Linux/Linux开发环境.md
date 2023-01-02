@@ -14,11 +14,167 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted 
 # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
 ```
 
-Go
+# 固定IP
+
+查看网关：
+
+```shell
+route -n
+```
+
+网络配置文件：/etc/netplan/xxx.yaml
+
+```yaml
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    eth0: 
+      dhcp4: no 
+      dhcp6: no
+      addresses: [172.25.0.7/24]
+      gateway4: 172.25.0.1
+      nameservers:
+        addresses: [8.8.8.8, 114.114.114.114]
+```
+
+使配置生效：
+
+```shell
+netplan apply
+```
+
+# 允许Root远程登录
+
+```shell
+vim /etc/ssh/sshd_config
+------------------------
+PermitRootLogin yes
+------------------------
+# 重启ssh
+systemctl restart ssh
+```
+
+# Kubernetes集群
+
+增加Docker、k8s源：
+
+```shell
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] http://mirrors.aliyun.com/docker-ce/linux/debian (lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg 
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] [kubernetes-apt安装包下载_开源镜像站-阿里云](https://mirrors.aliyun.com/kubernetes/apt/) kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+## 主机间免密
+
+1、安装openssh-server
+
+```shell
+sudo apt-get -y install openssh-server
+```
+
+2、生成ssh公私钥
+
+```shell
+ssh-keygen-t rsa
+```
+
+3、添加公钥到其他节点的`~.ssh/authorized_keys`
+
+## 虚拟机配置root
+
+```shell
+sudo passwd root    # 设置root密码
+sudo vim /etc/ssh/sshd_config    # 允许root登录
+----------------------------
+PermitRootLogin yes
+----------------------------
+sudo systemctl restart sshd     # 重启sshd
+```
+
+## 关闭swap
+
+```shell
+sudo swapoff -a
+sed -i 's/.*swap.*/#&/' /etc/fstab    # 永久关
+# 查看 swap为0 即可
+free
+```
+
+## 节点间host映射
+
+```shell
+#  固定主机名
+sudo vi /etc/hostname
+# 添加节点映射
+sudo vi /etc/hosts
+----------------------
+192.168.1.4 master
+192.168.1.4 slave0
+192.168.1.5 slave1
+```
+
+## 时间同步
+
+```shell
+timedatectl set-timezone Asia/Shanghai
+```
+
+## Docker
+
+新建/etc/apt/sources.list.d/docker.list,添加docker源：
+
+```shell
+deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+```
+
+更新并添加公钥：
+
+```shell
+apt-get update
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv [pub key]
+# 再次更新
+apt-get update
+```
+
+安装docker-ce、containerd.io
+
+```shell
+apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+## kubectl/kubeadm/kubelet
+
+前置依赖：
+
+```shell
+apt-get install -y apt-transport-https ca-certificates curl
+```
+
+下载Google公钥、添加apt源：
+
+```shell
+curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+更新并安装组件：
+
+```shell
+apt-get update
+apt-get install -y kubectl kubeadm kubelet
+```
+
+# DevelopEnv
+
+## Go
 
 [Download and install - The Go Programming Language](https://go.dev/doc/install)
 
-# Rust
+## Rust
 
 Ubuntu20.04版本
 
@@ -52,7 +208,7 @@ rustup show
 rustup update
 ```
 
-# NodeJs
+## NodeJs
 
 官网：[Download | Node.js (nodejs.org)](https://nodejs.org/en/download/)
 

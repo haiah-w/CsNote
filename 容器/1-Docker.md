@@ -1,27 +1,3 @@
-# Install
-
-[Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
-
-```shell
-sudo apt-get remove docker docker-engine docker.io containerd runc
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-- image
-- container
-- repository
-
-# Docker配置
-
-配置文件：/etc/docker/daemon.json
-
-```shell
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "registry-mirrors":["https://xmgeb39x.mirror.aliyuncs.com"]
-}
-```
-
 # 非root管理docker
 
 1、赋予用户root权限
@@ -52,8 +28,6 @@ id
 ```shell
 sudo systemctl daemon-reload && sudo systemctl restart docker
 ```
-
-[Ubuntu下搭建Kubernetes集群(3)--k8s部署 - 走看看 (zoukankan.com)](http://t.zoukankan.com/xl2432-p-10933022.html)
 
 # 镜像命令
 

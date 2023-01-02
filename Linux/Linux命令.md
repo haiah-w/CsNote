@@ -133,4 +133,5 @@ scp [args] [src] [user@ip:/dst]
 
 ```shell
 scp -r k8s-images.tar will@192.168.1.4:/home/will
+
 ```
