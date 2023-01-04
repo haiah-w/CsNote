@@ -180,6 +180,16 @@ Class stuClass3=Class.forName("com.entity.Student");
 Student stu = studentClass.newInstance();
 ```
 
+# final关键字
+
+属性不可重新赋值；
+
+反射可以修改非基本数据类型和非String类型的final修饰的属性；
+
+
+
+
+
 # 动态代理
 
 ## JDK动态代理
@@ -245,11 +255,7 @@ Student stu = studentClass.newInstance();
 
 序列化目的：可以在网络中传输字节序列；
 
-如果想要对象某个字段不参与序列化：
-
-```java
-transient
-```
+transient关键字：如果想要对象某个字段不参与序列化：
 
 # equals / HashCode
 
