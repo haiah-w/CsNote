@@ -1,4 +1,12 @@
 # Redis命令行
+Redis启停：
+```shell
+./src/redis-server ./redis.conf
+-------------------------------
+./src/redis-cli shutdown
+./src/redis-cli shutdown -a [password]
+```
+
 
 
 # Redis配置文件
