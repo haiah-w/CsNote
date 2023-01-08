@@ -2,7 +2,11 @@
 
 ## 编译安装
 
-1、下载对应版本：wget http://download.redis.io/releases/redis-5.0.14.tar.gz
+1、下载对应版本：
+
+```shell
+wget http://download.redis.io/releases/redis-5.0.14.tar.gz
+```
 
 2、解压到 `/opt` 下
 
@@ -11,6 +15,7 @@ tar -zxvf redis-5.0.14.tar.gz -C /opt/redis/
 ```
 
 3、编译
+
 ```shell
 make && make install
 ----------------------
@@ -19,6 +24,7 @@ apt install make build-essential gcc
 ```
 
 4、更改配置，启动
+
 ```conf
 # 关闭保护模式，开启外部访问
 protected-mode no
@@ -29,11 +35,13 @@ daemonize yes
 ```
 
 启动
+
 ```shell
 ./src/redis-server redis.conf
 ```
 
 ## 包安装
+
 ```shell
 apt-get install redis-server
 ---------------------------
@@ -42,6 +50,7 @@ service start redis-server
 ```
 
 ## docker
+
 ```shell
 # 拉镜像
 docker pull redis:5.7
@@ -57,3 +66,6 @@ docker run `
 redis:5.7
 ```
 
+# Redis客户端工具
+
+[GitHub - lework/RedisDesktopManager-Windows: RedisDesktopManager Windows版本](https://github.com/lework/RedisDesktopManager-Windows)

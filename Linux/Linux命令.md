@@ -18,8 +18,10 @@ sudo service --status-all | grep mysql
 启动服务
 
 ```shell
-sudo service [service] start
-sudo systemctl start [service]
+service [service] start
+systemctl start [service]
+-------------------------
+chkconfig 
 ```
 
 # 防火墙
@@ -133,5 +135,4 @@ scp [args] [src] [user@ip:/dst]
 
 ```shell
 scp -r k8s-images.tar will@192.168.1.4:/home/will
-
 ```
