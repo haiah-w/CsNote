@@ -183,6 +183,13 @@ go version
 go version go1.18.9 linux/amd64
 ```
 
+简单配置
+
+```shell
+go env -w GOPROXY=https://goproxy.io
+go env -w GO111MODULE=on
+```
+
 ## Rust
 
 Ubuntu20.04版本
