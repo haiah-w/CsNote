@@ -16,3 +16,4 @@ Condition、lock
 
 分布式锁
 Redisson
+https://xie.infoq.cn/article/d8e897f768eb1a358a0fd6300
