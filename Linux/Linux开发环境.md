@@ -174,6 +174,15 @@ apt-get install -y kubectl kubeadm kubelet
 
 [Download and install - The Go Programming Language](https://go.dev/doc/install)
 
+```shell
+# 下载一个版本，解压，配置环境变量即可
+rm -rf /opt/go && tar -C /opt -xzf go1.18.9.linux-amd64.tar.gz
+export PATH=$PATH:/opt/go/bin
+go version
+----------
+go version go1.18.9 linux/amd64
+```
+
 ## Rust
 
 Ubuntu20.04版本
