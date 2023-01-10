@@ -14,6 +14,8 @@ Eureka-Client：服务的消费者和提供者；
 
 【Alibaba研发的注册中心，可以替代Eureka】
 
+https://github.com/alibaba/nacos/releases
+
 提供：服务注册、服务发现、环境隔离的配置中心
 
 # Ribbon
