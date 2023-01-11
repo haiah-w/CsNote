@@ -296,10 +296,24 @@ UDP的报文是由应用层决定的，一个报文多大，就发送多少，�
 
 <img title="" src="../.images/socket.png" alt="" width="521" data-align="center">
 
-1、客户端发起建立连接请求，服务端收到请求时，会将Socket打开，即执行Socket.Accept，Socket进入阻塞状态；
+1、客户端发起建立连接请求，服务端收到请求时，会将Socket打开，即执行Socket的accept系统调用，Socket进入阻塞状态；
 
 2、服务端响应客户端，并将Socket加入<mark>半连接队列</mark>（SYN队列）；
 
-3、服务端收到客户端的确认后，从半连接队列中获取对应的Socket，Accept结束，将socket加入<mark>全连接队列</mark>（Accept队列）
+3、服务端收到客户端的确认后，从半连接队列中获取对应的Socket，accept返回，将socket加入<mark>全连接队列</mark>（Accept队列）
 
 4、Socket出队，并执行accept()，完成连接建立，开始进行网络读写；
+
+
+# SYN泛洪
+
+攻击者发送大量的连接建立请求，但不响应第二次握手，导致服务端半连接队列满，无法处理正常请求的一种攻击；不会窃取信息，但会致使服务不可用；
+
+Linux会重试5第二次握手，每次间隔递增，大概需要持续60s左右，非常耗时；
+
+因此Linux提供了SYNCookie来解决这种问题，类似于HTTP Cookie，连接信息不再保存在半连接队列中，而是将连接信息编码返回给客户端，客户端响应二次握手时，携带，服务端再进行连接的建立；
+- 需要开启：net.ipv4.tcp_syncookies
+
+
+
+
